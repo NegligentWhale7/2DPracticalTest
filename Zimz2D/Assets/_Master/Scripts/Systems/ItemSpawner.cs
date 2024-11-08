@@ -11,11 +11,23 @@ public class ItemSpawner : MonoBehaviour
 
     private void Awake()
     {
-        for(int i = 0; i < Random.Range(minItems, maxItems); i++)
+        // Crear una lista de los puntos de spawn disponibles
+        List<Transform> availableSpawnPoints = new List<Transform>(spawnPoints);
+
+        int itemsToSpawn = Mathf.Min(availableSpawnPoints.Count, (int)Random.Range(minItems, maxItems));
+
+        for (int i = 0; i < itemsToSpawn; i++)
         {
-            int randomItem = Random.Range(0, items.Count);
-            int randomSpawnPoint = Random.Range(0, spawnPoints.Length);
-            Instantiate(items[randomItem], spawnPoints[randomSpawnPoint].position, Quaternion.identity);
+            // Seleccionar un punto de spawn aleatorio de los disponibles
+            int randomSpawnIndex = Random.Range(0, availableSpawnPoints.Count);
+            Transform spawnPoint = availableSpawnPoints[randomSpawnIndex];
+
+            // Instanciar el item en el punto de spawn seleccionado
+            int randomItemIndex = Random.Range(0, items.Count);
+            Instantiate(items[randomItemIndex], spawnPoint.position, Quaternion.identity);
+
+            // Remover el punto de spawn utilizado de la lista
+            availableSpawnPoints.RemoveAt(randomSpawnIndex);
         }
     }
 }

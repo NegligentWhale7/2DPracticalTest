@@ -7,9 +7,23 @@ public class ItemWorld : MonoBehaviour
     private Item item;
     private SpriteRenderer spriteRenderer;
 
+    private enum ItemType
+    {
+        Weapon,
+        Armature,
+        HealthPotion,
+        Strawberries,
+        Potatoes,
+        Pumpkin,
+        Aubergine,
+    }
+    [SerializeField] private ItemType type;
+
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        item = new Item();
+        item.itemType = (Item.ItemType)type;
     }
 
     public static ItemWorld SpawnItemWorld(Vector3 position, Item item)
@@ -28,6 +42,8 @@ public class ItemWorld : MonoBehaviour
 
     public Item GetItem()
     {
+        SetItem(item);
+        //Debug.Log(item.itemType);
         return item;
     }
 

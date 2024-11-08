@@ -31,7 +31,9 @@ public class PlayerManager : MonoBehaviour
         if(itemWorld != null)
         {
             inventory.AddItem(itemWorld.GetItem());
-            itemWorld.DestroySelf();
+            itemWorld.gameObject.SetActive(false);
+            //Debug.Log(itemWorld.GetItem());
+            //itemWorld.DestroySelf();
         }
     }
 }

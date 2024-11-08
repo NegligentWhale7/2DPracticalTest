@@ -6,7 +6,6 @@ public class Item
 {
    public enum ItemType
     {
-        //Coin,
         Weapon,
         Armature,
         HealthPotion,

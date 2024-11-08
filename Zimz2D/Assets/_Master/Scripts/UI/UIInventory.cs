@@ -12,7 +12,7 @@ public class UIInventory : MonoBehaviour
     public void SetInventory(Inventory inventory)
     {
         this.inventory = inventory;
-        //inventory.OnItemListChanged += InventoryOnItemListChanged;
+        inventory.OnItemListChanged += InventoryOnItemListChanged;
         RefreshInventoryItems();
     }
 
@@ -23,6 +23,10 @@ public class UIInventory : MonoBehaviour
 
     private void RefreshInventoryItems()
     {
+        foreach (Transform child in itemSlotContainer)
+        {
+            Destroy(child.gameObject);
+        }
 
         foreach (Item item in inventory.GetItems())
         {
@@ -35,6 +39,6 @@ public class UIInventory : MonoBehaviour
 
     private void OnDisable()
     {
-       // inventory.OnItemListChanged -= InventoryOnItemListChanged;
+        inventory.OnItemListChanged -= InventoryOnItemListChanged;
     }
 }

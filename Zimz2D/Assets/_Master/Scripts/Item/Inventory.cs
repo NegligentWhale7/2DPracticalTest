@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Inventory 
 {
+    public Action OnItemListChanged;
     public List<Item> items = new();
 
     public Inventory()
@@ -20,6 +22,7 @@ public class Inventory
     public void AddItem(Item item)
     {
         items.Add(item);
+        OnItemListChanged?.Invoke();
     }
 
     public List<Item> GetItems()

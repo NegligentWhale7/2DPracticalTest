@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4301831423844666900}
   - component: {fileID: 634559690134295477}
   - component: {fileID: 3840006448437700182}
-  - component: {fileID: -2100515848811299889}
+  - component: {fileID: 2755397414850305696}
   m_Layer: 0
   m_Name: ItemWorld
   m_TagString: Untagged
@@ -134,7 +134,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &-2100515848811299889
+--- !u!114 &2755397414850305696
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5520492772439691134}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 830a3693f56c6104fbb25e7d9799859f, type: 3}
+  m_Script: {fileID: 11500000, guid: 8374fe2d13cf9334d8aba48913ba4921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemType: 4
+  type: 4
