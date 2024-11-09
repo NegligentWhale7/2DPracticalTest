@@ -16,7 +16,7 @@ public class Inventory
         AddItem(new Item { itemType = Item.ItemType.Aubergine, amount = 1 });
         AddItem(new Item { itemType = Item.ItemType.Weapon, amount = 1 });
         AddItem(new Item { itemType = Item.ItemType.Armature, amount = 1 });
-        Debug.Log(items.Count);
+        //Debug.Log(items.Count);
     }
 
     public void AddItem(Item item)

@@ -8,6 +8,12 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] private UIBarItem healthBar;
     [SerializeField] UIInventory uiInventory;
+    [Header("Skins")]
+    [SerializeField] PlayerAnimationsManager playerAnimationsManager;
+    [SerializeField] private SpriteRenderer skinA;
+    [SerializeField] private SpriteRenderer skinC;
+    [SerializeField] private Animator animatorA;
+    [SerializeField] private Animator animatorC;
 
     private Inventory inventory;
     private float currentHealth;
@@ -23,6 +29,26 @@ public class PlayerManager : MonoBehaviour
     {
         currentHealth = maxHealth;
         healthBar.DisplayBarValue(currentHealth, maxHealth);
+    }
+
+    [ContextMenu("ChangeToC")]
+    public void ChangeToVariant()
+    {
+        skinA.enabled = false;
+        skinC.enabled = true;
+        playerAnimationsManager.Animator = animatorC;
+        animatorA.enabled = false;
+        animatorC.enabled = true;
+    }
+
+    [ContextMenu("BackToOriginal")]
+    public void BackToOriginal()
+    {
+        skinA.enabled = true;
+        skinC.enabled = false;
+        playerAnimationsManager.Animator = animatorA;
+        animatorA.enabled = true;
+        animatorC.enabled = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

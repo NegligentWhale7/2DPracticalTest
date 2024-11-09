@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class PlayerAnimationsManager : MonoBehaviour
 {
-    private Animator animator;
+    [SerializeField] private Animator animator;
+    public Animator Animator { get => animator; set { animator = value; } }
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
     }
 
     public void SetMovementAnimation(Vector2 moveInput, bool isMoving)

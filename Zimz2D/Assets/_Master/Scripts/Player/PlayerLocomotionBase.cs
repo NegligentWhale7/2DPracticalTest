@@ -19,14 +19,4 @@ public class PlayerLocomotionBase : MonoBehaviour
         // Ajuste la velocidad de movimiento en ambos ejes X y Y
         rb.velocity = moveInput * speed;
     }
-
-    private void Update()
-    {
-        // Capturar la entrada de movimiento del usuario
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
-
-        // Pasar la entrada de movimiento al método de movimiento
-        Move(new Vector2(horizontal, vertical));
-    }
 }
