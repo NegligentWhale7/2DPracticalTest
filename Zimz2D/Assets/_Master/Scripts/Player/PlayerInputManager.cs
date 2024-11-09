@@ -7,7 +7,8 @@ public class PlayerInputManager : MonoBehaviour
 {
     private PlayerLocomotionBase playerMovement;
     private PlayerAnimationsManager playerAnimation;
-    private float moveInput;
+    private Vector2 moveInput;
+    private bool isMoving = false;
 
     private void Awake()
     {
@@ -17,21 +18,14 @@ public class PlayerInputManager : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        moveInput = context.ReadValue<Vector2>().x;
-    }
-
-    public void OnJump(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            playerMovement.Jump();
-        }
+        moveInput = context.ReadValue<Vector2>();
+        if (moveInput != Vector2.zero) isMoving = true;
+        else isMoving = false;
     }
 
     private void FixedUpdate()
     {
         playerMovement.Move(moveInput);
-        playerAnimation.SetMovementAnimation(moveInput);
-        playerAnimation.SetJumpAnimation(playerMovement.IsGrounded());
+        playerAnimation.SetMovementAnimation(moveInput, isMoving);
     }
 }

@@ -11,13 +11,16 @@ public class PlayerAnimationsManager : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    public void SetMovementAnimation(float moveInput)
+    public void SetMovementAnimation(Vector2 moveInput, bool isMoving)
     {
-        animator.SetFloat("Speed", Mathf.Abs(moveInput));
+        animator.SetFloat("Horizontal", moveInput.x);
+        animator.SetFloat("Vertical", moveInput.y);
+        animator.SetBool("isMoving", isMoving);
+        // animator.SetFloat("Speed", Mathf.Abs(moveInput));
     }
 
     public void SetJumpAnimation(bool isGrounded)
     {
-        animator.SetBool("IsGrounded", isGrounded);
+       // animator.SetBool("IsGrounded", isGrounded);
     }
 }

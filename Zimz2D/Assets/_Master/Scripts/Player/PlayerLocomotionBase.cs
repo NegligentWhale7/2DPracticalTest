@@ -6,51 +6,27 @@ public class PlayerLocomotionBase : MonoBehaviour
 {
     [Header("Movement Settings")]
     public float speed = 5f;
-    public float jumpForce = 10f;
-    public LayerMask groundLayer;
-    public Transform groundCheck;
 
     private Rigidbody2D rb;
-    private bool isFacingRight = false;
-
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    public void Move(float moveInput)
+    public void Move(Vector2 moveInput)
     {
-        rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
-
-        if(!isFacingRight && moveInput > 0)
-        {
-            Flip();
-        }
-        else if (isFacingRight && moveInput < 0)
-        {
-            Flip();
-        }
+        // Ajuste la velocidad de movimiento en ambos ejes X y Y
+        rb.velocity = moveInput * speed;
     }
 
-    public void Jump()
+    private void Update()
     {
-        if (IsGrounded())
-        {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-        }
-    }
+        // Capturar la entrada de movimiento del usuario
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
 
-    public bool IsGrounded()
-    {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
-    }
-
-    public void Flip()
-    {
-        isFacingRight = !isFacingRight;
-        Vector3 localScale = transform.localScale;
-        localScale.x *= -1;
-        transform.localScale = localScale;
+        // Pasar la entrada de movimiento al método de movimiento
+        Move(new Vector2(horizontal, vertical));
     }
 }
