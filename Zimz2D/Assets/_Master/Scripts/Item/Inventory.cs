@@ -30,19 +30,19 @@ public class Inventory
                 {
                     inventoryItem.amount ++;
                     itemAlreadyInInventory = true;
-                    //Debug.Log("Item already in inventory " + item.amount);
+                    Debug.Log("Item already in inventory " + item.amount);
                 }
             }
             if(!itemAlreadyInInventory)
             {
                 items.Add(item);
-                //Debug.Log("New stackable item " + item.amount);
+                Debug.Log("New stackable item " + item.amount);
             }
         }
         else
         {
             items.Add(item);
-            //Debug.Log("New item " + item.amount);
+            Debug.Log("New item " + item.amount);
         }
 
         OnItemListChanged?.Invoke();

@@ -17,6 +17,10 @@ public class PlayerManager : MonoBehaviour
 
     private Inventory inventory;
     private float currentHealth;
+    private int currentMoney = 10000;
+
+    public Inventory Inventory { get => inventory; }
+    public int CurrentMoney { get => currentMoney; set => currentMoney = value; }
 
     private void Awake()
     {
