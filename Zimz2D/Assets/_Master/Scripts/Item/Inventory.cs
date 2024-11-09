@@ -21,7 +21,30 @@ public class Inventory
 
     public void AddItem(Item item)
     {
-        items.Add(item);
+        if(item.isStackable())
+        {
+            bool itemAlreadyInInventory = false;
+            foreach (Item inventoryItem in items)
+            {
+                if (inventoryItem.itemType == item.itemType)
+                {
+                    inventoryItem.amount ++;
+                    itemAlreadyInInventory = true;
+                    //Debug.Log("Item already in inventory " + item.amount);
+                }
+            }
+            if(!itemAlreadyInInventory)
+            {
+                items.Add(item);
+                //Debug.Log("New stackable item " + item.amount);
+            }
+        }
+        else
+        {
+            items.Add(item);
+            //Debug.Log("New item " + item.amount);
+        }
+
         OnItemListChanged?.Invoke();
     }
 

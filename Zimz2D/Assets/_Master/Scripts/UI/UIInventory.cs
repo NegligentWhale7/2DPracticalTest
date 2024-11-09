@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class UIInventory : MonoBehaviour
 {
@@ -34,6 +35,10 @@ public class UIInventory : MonoBehaviour
             itemSlotRectTransform.gameObject.SetActive(true);
             var image = itemSlotRectTransform.Find("Image").GetComponent<UnityEngine.UI.Image>();
             image.sprite = item.GetSprite();
+            //TextMeshProUGUI text = itemSlotRectTransform.Find("text").GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI text = itemSlotRectTransform.GetComponentInChildren<TextMeshProUGUI>();
+            if (item.amount > 1)  text.SetText(item.amount.ToString());
+            else text.SetText("");
         }
     }
 

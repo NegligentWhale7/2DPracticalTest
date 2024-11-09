@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ItemWorld : MonoBehaviour
 {
+    [SerializeField] private int amount = 1;
+    [SerializeField] private TextMeshProUGUI text;
     private Item item;
     private SpriteRenderer spriteRenderer;
 
@@ -24,6 +27,11 @@ public class ItemWorld : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         item = new Item();
         item.itemType = (Item.ItemType)type;
+        item.amount = amount;
+
+        if (item.amount > 1) text.SetText(item.amount.ToString());
+        else text.SetText("");
+        //GetItem();
     }
 
     public static ItemWorld SpawnItemWorld(Vector3 position, Item item)
@@ -37,7 +45,7 @@ public class ItemWorld : MonoBehaviour
     public void SetItem(Item item)
     {
         this.item = item;
-        spriteRenderer.sprite = item.GetSprite();
+        spriteRenderer.sprite = item.GetSprite();       
     }
 
     public Item GetItem()

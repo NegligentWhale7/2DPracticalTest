@@ -16,7 +16,7 @@ public class Item
     }
 
     public ItemType itemType;
-    public int amount;
+    public int amount = 1;
 
     public Sprite GetSprite()
     {
@@ -30,5 +30,23 @@ public class Item
             ItemType.Aubergine => ItemAssets.Instance.AubergineSprite,
             _ => ItemAssets.Instance.HealthPotionSprite,
         };
+    }
+
+    public bool isStackable()
+    {
+        switch (itemType)
+        {
+            case ItemType.HealthPotion:
+            case ItemType.Aubergine:
+            case ItemType.Potatoes:
+            case ItemType.Strawberries:
+            case ItemType.Pumpkin:
+                return true;
+            case ItemType.Weapon:
+            case ItemType.Armature:
+                return false;
+            default:
+                return false;
+        }
     }
 }
