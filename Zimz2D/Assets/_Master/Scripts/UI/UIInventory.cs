@@ -7,8 +7,19 @@ using TMPro;
 public class UIInventory : MonoBehaviour
 {
     private Inventory inventory;
+    [SerializeField] private Canvas inventoryCanvas;
     [SerializeField] private Transform itemSlotContainer;
     [SerializeField] private Transform itemSlotTemplate;
+
+    public void OpenInventoryCanvas()
+    {
+        inventoryCanvas.enabled = true;
+    }
+
+    public void CloseInventoryCanvas()
+    {
+        inventoryCanvas.enabled = false;
+    }
 
     public void SetInventory(Inventory inventory)
     {
