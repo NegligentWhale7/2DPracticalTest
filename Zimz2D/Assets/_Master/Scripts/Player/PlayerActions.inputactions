@@ -123,7 +123,7 @@
                 {
                     "name": "",
                     "id": "3b1e39f8-0208-48ed-9dfc-5630e999ca3a",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
