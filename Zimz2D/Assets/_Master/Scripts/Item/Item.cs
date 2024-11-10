@@ -47,6 +47,7 @@ public class Item
         {
             ItemType.RogueHair => true,
             ItemType.RogueMask => true,
+            ItemType.Weapon => true,
             _ => false,
         };
     }

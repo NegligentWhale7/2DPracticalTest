@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -8,6 +9,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] private UIBarItem healthBar;
     [SerializeField] UIInventory uiInventory;
+    [SerializeField] Canvas deathCanvas;
+    [SerializeField] TextMeshProUGUI moneyText;
     [Header("Skins")]
     [SerializeField] PlayerAnimationsManager playerAnimationsManager;
     [SerializeField] private GameObject rogueMask;
@@ -18,17 +21,21 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private Animator animatorC;
 
     private Inventory inventory;
+    private PlayerInputManager playerInputManager;
     private float currentHealth;
-    private int currentMoney = 10000;
+    private int currentMoney = 0;
+    private bool canAttack = false;
 
     public Inventory Inventory { get => inventory; }
     public int CurrentMoney { get => currentMoney; set => currentMoney = value; }
+    public bool CanAttack { get => canAttack; set => canAttack = value; }
 
     private void Awake()
     {
+        playerInputManager = GetComponent<PlayerInputManager>();
         inventory = new Inventory();
         uiInventory.SetInventory(inventory);
-
+        UpdateMoney();
     }
 
     private void Start()
@@ -79,5 +86,37 @@ public class PlayerManager : MonoBehaviour
             //Debug.Log(itemWorld.GetItem());
             //itemWorld.DestroySelf();
         }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth < 0)
+        {
+            currentHealth = 0;
+            deathCanvas.enabled = true;
+        }
+        healthBar.DisplayBarValue(currentHealth, maxHealth);
+    }
+
+    public void Heal(float healAmount)
+    {
+        currentHealth += healAmount;
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+        healthBar.DisplayBarValue(currentHealth, maxHealth);
+    }
+
+    public void Attack()
+    {
+        if(!canAttack) return;
+        if(playerInputManager.AttackInput) playerAnimationsManager.SetAttackAnimation();
+    }
+
+    public void UpdateMoney()
+    {
+        moneyText.text = "$"+currentMoney.ToString();
     }
 }

@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayerAnimationsManager : MonoBehaviour
 {
     [SerializeField] private Animator animator;
+    [SerializeField] private SpriteRenderer mainSpriteRenderer;
+    [SerializeField] private GameObject weapon;
+
     public Animator Animator { get => animator; set { animator = value; } }
 
     private void Awake()
@@ -23,5 +26,19 @@ public class PlayerAnimationsManager : MonoBehaviour
     public void SetJumpAnimation(bool isGrounded)
     {
        // animator.SetBool("IsGrounded", isGrounded);
+    }
+
+    public void SetAttackAnimation()
+    {
+        //mainSpriteRenderer.enabled = false;
+        weapon.SetActive(true);
+        animator.SetBool("isAttacking", true);
+    }
+
+    public void DisableAttackAnimation()
+    {
+        //mainSpriteRenderer.enabled = true;
+        weapon.SetActive(false);
+        animator.SetBool("isAttacking", false);
     }
 }

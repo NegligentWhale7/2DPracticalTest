@@ -11,9 +11,11 @@ public class PlayerInputManager : MonoBehaviour
     private bool isMoving = false;
     private bool canInteract = false;
     private bool isInteracting = false;
+    private bool attackInput = false;
 
     public bool InteractInput { get => isInteracting; set => isInteracting = value; }
     public bool CanInteract { get => canInteract; set => canInteract = value; }
+    public bool AttackInput { get => attackInput; set => attackInput = value; }
 
     private void Awake()
     {
@@ -32,6 +34,12 @@ public class PlayerInputManager : MonoBehaviour
     {
         if (context.started) isInteracting = true;
         else if (context.canceled) isInteracting = false;
+    }
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if (context.started) attackInput = true;
+        else if (context.canceled) attackInput = false;
     }
 
     private void FixedUpdate()

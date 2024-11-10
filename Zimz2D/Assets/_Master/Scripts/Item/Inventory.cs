@@ -12,10 +12,10 @@ public class Inventory
     {
         items = new List<Item>();
 
-        AddItem(new Item { itemType = Item.ItemType.HealthPotion, amount = 1 });
-        AddItem(new Item { itemType = Item.ItemType.Aubergine, amount = 1 });
-        AddItem(new Item { itemType = Item.ItemType.Weapon, amount = 1 });
-        AddItem(new Item { itemType = Item.ItemType.Armature, amount = 1 });
+        //AddItem(new Item { itemType = Item.ItemType.HealthPotion, amount = 1 });
+        //AddItem(new Item { itemType = Item.ItemType.Aubergine, amount = 1 });
+        //AddItem(new Item { itemType = Item.ItemType.Weapon, amount = 1 });
+        //AddItem(new Item { itemType = Item.ItemType.Armature, amount = 1 });
         //Debug.Log(items.Count);
     }
 
@@ -96,11 +96,19 @@ public class Inventory
             {
                 playerManager.EquipRogueMask();
             }
+            if(item.itemType == Item.ItemType.Weapon)
+            {
+                playerManager.CanAttack = true;
+            }
         }
         if(isAVariant)
         {
             playerManager.ChangeToVariant();
         }
-
+        if(item.itemType == Item.ItemType.HealthPotion)
+        {
+            playerManager.Heal(5);
+            RemoveItem(item);
+        }
     }
 }

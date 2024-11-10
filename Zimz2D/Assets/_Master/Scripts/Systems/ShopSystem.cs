@@ -15,11 +15,13 @@ public class ShopSystem : MonoBehaviour
     public void ShowMoney()
     {
         moneyBuyText.text = playerManager.CurrentMoney.ToString();
+        playerManager.UpdateMoney();
     }
 
     public void ShowSellableMoney()
     {
         moneySellText.text = playerManager.CurrentMoney.ToString();
+        playerManager.UpdateMoney();
     }
 
     public void PurchaseItem(GameObject itemPref)
