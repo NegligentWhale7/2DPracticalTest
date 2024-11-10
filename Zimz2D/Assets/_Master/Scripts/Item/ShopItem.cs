@@ -13,6 +13,7 @@ public class ShopItem : MonoBehaviour
     [Header("Sell Settings")]
     [SerializeField] Image itemImage;
     [SerializeField] TextMeshProUGUI itemAmount;
+    [SerializeField] Button sellButton;
 
     private Inventory inventory;
     private Item itemToAdd;
@@ -21,6 +22,7 @@ public class ShopItem : MonoBehaviour
     public Image ItemImage => itemImage;
     public TextMeshProUGUI ItemAmount => itemAmount;
     public TextMeshProUGUI ItemSellPrice => costText;
+    public Button SellButton => sellButton;
 
     public enum PurchableItemType
     {

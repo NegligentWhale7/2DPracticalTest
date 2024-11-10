@@ -18,7 +18,7 @@ public class Item
 
     public ItemType itemType;
     public int amount = 1;
-    public int itemSellPrice = 10;
+    public int itemSellPrice => GetSellPrice();
 
     public Sprite GetSprite()
     {
@@ -32,6 +32,22 @@ public class Item
             ItemType.Aubergine => ItemAssets.Instance.AubergineSprite,
             ItemType.RogueMask => ItemAssets.Instance.RogueMaskSprite,
             _ => ItemAssets.Instance.HealthPotionSprite,
+        };
+    }
+
+    public int GetSellPrice()
+    {
+        return itemType switch
+        {
+            ItemType.HealthPotion => 5,
+            ItemType.Aubergine => 10,
+            ItemType.Potatoes => 15,
+            ItemType.Strawberries => 20,
+            ItemType.Pumpkin => 25,
+            ItemType.Weapon => 30,
+            ItemType.Armature => 35,
+            ItemType.RogueMask => 40,
+            _ => 5,
         };
     }
 

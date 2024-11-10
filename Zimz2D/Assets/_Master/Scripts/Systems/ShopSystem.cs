@@ -17,7 +17,7 @@ public class ShopSystem : MonoBehaviour
         moneyBuyText.text = playerManager.CurrentMoney.ToString();
     }
 
-    public void ShowMoneySell()
+    public void ShowSellableMoney()
     {
         moneySellText.text = playerManager.CurrentMoney.ToString();
     }
@@ -64,20 +64,26 @@ public class ShopSystem : MonoBehaviour
         {
             RectTransform itemSlotRectTransform = Instantiate(itemStockTemplate, stockContainer).GetComponent<RectTransform>();
             itemSlotRectTransform.gameObject.SetActive(true);
-            var shopItem = itemStockTemplate.GetComponent<ShopItem>();
-            var image = shopItem.ItemImage;
-            image.sprite = item.GetSprite();
-            var text = shopItem.ItemAmount;
-            if (item.amount > 1) text.SetText(item.amount.ToString());
-            else text.SetText("");
-            var sellPrice = shopItem.ItemSellPrice;
-            sellPrice.SetText(item.itemSellPrice.ToString());
+
+            var shopItemInstance = itemSlotRectTransform.GetComponent<ShopItem>();
+
+            // Asigna las propiedades específicas para cada instancia
+            shopItemInstance.ItemImage.sprite = item.GetSprite();
+            shopItemInstance.ItemAmount.SetText(item.amount > 1 ? item.amount.ToString() : "");
+            shopItemInstance.ItemSellPrice.SetText(item.itemSellPrice.ToString());
+
+            // Asigna la función SellItem al botón del objeto instanciado
+            shopItemInstance.SellButton.onClick.AddListener(() => SellItem(item));
         }
     }
+
 
     public void SellItem(Item item)
     {
         playerManager.CurrentMoney += item.itemSellPrice;
+        ShowSellableMoney();
         playerManager.Inventory.RemoveItem(item);
+        DisplayItemInInventory();
+        Debug.Log("Item sold: " + item.itemType);
     }
 }

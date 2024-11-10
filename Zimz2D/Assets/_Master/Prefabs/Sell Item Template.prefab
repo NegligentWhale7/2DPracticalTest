@@ -316,6 +316,7 @@ MonoBehaviour:
   isSelling: 1
   itemImage: {fileID: 7014546174118563818}
   itemAmount: {fileID: 7439696079553679634}
+  sellButton: {fileID: 4241866398981961327}
   itemType: 0
 --- !u!1 &7014546174118563820
 GameObject:
