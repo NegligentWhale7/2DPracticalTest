@@ -21,7 +21,7 @@ public class Inventory
 
     public void AddItem(Item item)
     {
-        if(item.isStackable())
+        if(item.IsStackable())
         {
             bool itemAlreadyInInventory = false;
             foreach (Item inventoryItem in items)
@@ -55,7 +55,7 @@ public class Inventory
 
     public void RemoveItem(Item item)
     {
-        if(item.isStackable())
+        if(item.IsStackable())
         {
             Item itemToRemove = null;
             foreach (Item inventoryItem in items)
@@ -79,5 +79,28 @@ public class Inventory
             items.Remove(item);
         }
         OnItemListChanged?.Invoke();
+    }
+
+    public void UseItem(Item item, PlayerManager playerManager)
+    {
+        bool isEquipably = item.GetIsEquipable();
+        bool isAVariant = item.GetIsAVariant();
+
+        if (isEquipably)
+        {
+            if (item.itemType == Item.ItemType.RogueHair)
+            {
+                playerManager.EquipRogueHair();
+            }
+            else if (item.itemType == Item.ItemType.RogueMask)
+            {
+                playerManager.EquipRogueMask();
+            }
+        }
+        if(isAVariant)
+        {
+            playerManager.ChangeToVariant();
+        }
+
     }
 }

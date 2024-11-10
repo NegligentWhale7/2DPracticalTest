@@ -35,24 +35,6 @@ public class ShopSystem : MonoBehaviour
         Debug.Log("Item purchased: " + item.itemName);
     }
 
-    public void EquipItem(PurchableItem item)
-    {
-        if (!item.isPurchased)
-        {
-            Debug.Log("Item is not purchased yet");
-            return;
-        }
-
-        if (item.isEquipped)
-        {
-            Debug.Log("Item is already equipped");
-            return;
-        }
-
-        item.isEquipped = true;
-        Debug.Log("Item equipped: " + item.itemName);
-    }
-
     public void DisplayItemInInventory()
     {
         foreach (Transform child in stockContainer)
@@ -70,20 +52,27 @@ public class ShopSystem : MonoBehaviour
             // Asigna las propiedades específicas para cada instancia
             shopItemInstance.ItemImage.sprite = item.GetSprite();
             shopItemInstance.ItemAmount.SetText(item.amount > 1 ? item.amount.ToString() : "");
-            shopItemInstance.ItemSellPrice.SetText(item.itemSellPrice.ToString());
+            shopItemInstance.ItemSellPrice.SetText(item.ItemSellPrice.ToString());
 
             // Asigna la función SellItem al botón del objeto instanciado
             shopItemInstance.SellButton.onClick.AddListener(() => SellItem(item));
+            shopItemInstance.SellButton.onClick.AddListener(() => CheckUnpurchased(shopItemInstance));
         }
     }
 
 
     public void SellItem(Item item)
     {
-        playerManager.CurrentMoney += item.itemSellPrice;
+        playerManager.CurrentMoney += item.ItemSellPrice;
         ShowSellableMoney();
         playerManager.Inventory.RemoveItem(item);
         DisplayItemInInventory();
         Debug.Log("Item sold: " + item.itemType);
+    }
+
+    public void CheckUnpurchased(ShopItem shopItem)
+    {
+        var item = shopItem.Item;
+        if(item != null) item.isPurchased = false;
     }
 }

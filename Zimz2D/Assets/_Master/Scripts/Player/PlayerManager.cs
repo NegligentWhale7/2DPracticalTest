@@ -10,6 +10,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] UIInventory uiInventory;
     [Header("Skins")]
     [SerializeField] PlayerAnimationsManager playerAnimationsManager;
+    [SerializeField] private GameObject rogueMask;
+    [SerializeField] private GameObject rogueHair;
     [SerializeField] private SpriteRenderer skinA;
     [SerializeField] private SpriteRenderer skinC;
     [SerializeField] private Animator animatorA;
@@ -53,6 +55,18 @@ public class PlayerManager : MonoBehaviour
         playerAnimationsManager.Animator = animatorA;
         animatorA.enabled = true;
         animatorC.enabled = false;
+    }
+
+    public void EquipRogueMask()
+    {
+        rogueMask.SetActive(true);
+        rogueHair.SetActive(false);
+    }
+
+    public void EquipRogueHair()
+    {
+        rogueMask.SetActive(false);
+        rogueHair.SetActive(true);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

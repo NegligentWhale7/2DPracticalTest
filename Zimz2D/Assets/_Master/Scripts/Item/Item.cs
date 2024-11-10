@@ -13,12 +13,16 @@ public class Item
         Potatoes,
         Pumpkin,
         Aubergine,
-        RogueMask
+        RogueMask,
+        RogueHair,
+        VariantC
     }
 
     public ItemType itemType;
     public int amount = 1;
-    public int itemSellPrice => GetSellPrice();
+    public int ItemSellPrice => GetSellPrice();
+    public bool isEquipably = false;
+    public bool isAVariant = false;
 
     public Sprite GetSprite()
     {
@@ -31,7 +35,28 @@ public class Item
             ItemType.Pumpkin => ItemAssets.Instance.PumpkinSprite,
             ItemType.Aubergine => ItemAssets.Instance.AubergineSprite,
             ItemType.RogueMask => ItemAssets.Instance.RogueMaskSprite,
+            ItemType.RogueHair => ItemAssets.Instance.RogueHairSprite,
+            ItemType.VariantC => ItemAssets.Instance.VariantCSprite,
             _ => ItemAssets.Instance.HealthPotionSprite,
+        };
+    }
+
+    public bool GetIsEquipable()
+    {
+        return itemType switch
+        {
+            ItemType.RogueHair => true,
+            ItemType.RogueMask => true,
+            _ => false,
+        };
+    }
+
+    public bool GetIsAVariant()
+    {
+        return itemType switch
+        {
+            ItemType.VariantC => true,
+            _ => false,
         };
     }
 
@@ -47,11 +72,13 @@ public class Item
             ItemType.Weapon => 30,
             ItemType.Armature => 35,
             ItemType.RogueMask => 40,
+            ItemType.RogueHair => 40,
+            ItemType.VariantC => 150,
             _ => 5,
         };
     }
 
-    public bool isStackable()
+    public bool IsStackable()
     {
         switch (itemType)
         {
@@ -64,6 +91,8 @@ public class Item
             case ItemType.Weapon:
             case ItemType.Armature:
             case ItemType.RogueMask:
+            case ItemType.RogueHair:
+            case ItemType.VariantC:
                 return false;
             default:
                 return false;

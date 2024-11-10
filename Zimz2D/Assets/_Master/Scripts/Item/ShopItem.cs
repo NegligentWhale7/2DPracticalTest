@@ -33,7 +33,9 @@ public class ShopItem : MonoBehaviour
         Potatoes,
         Pumpkin,
         Aubergine,
-        RogueMask
+        RogueMask,
+        RogueHair,
+        VariantC
     }
 
     [SerializeField] PurchableItemType itemType;
