@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Sword
   itemPrice: 50
-  canBuyMultiple: 0
+  canBuyMultiple: 1
   isPurchased: 0
   isEquipped: 0

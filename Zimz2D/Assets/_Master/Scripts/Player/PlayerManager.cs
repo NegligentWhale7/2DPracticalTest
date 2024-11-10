@@ -25,7 +25,7 @@ public class PlayerManager : MonoBehaviour
     private Inventory inventory;
     private PlayerInputManager playerInputManager;
     private float currentHealth;
-    private int currentMoney = 500;
+    private int currentMoney = 0;
     private bool canAttack = false;
 
     public Inventory Inventory { get => inventory; }
