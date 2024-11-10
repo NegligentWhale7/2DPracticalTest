@@ -18,13 +18,14 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private GameObject rogueHair;
     [SerializeField] private SpriteRenderer skinA;
     [SerializeField] private SpriteRenderer skinC;
+    [SerializeField] private GameObject swordAVariant, swordCVariant;
     [SerializeField] private Animator animatorA;
     [SerializeField] private Animator animatorC;
 
     private Inventory inventory;
     private PlayerInputManager playerInputManager;
     private float currentHealth;
-    private int currentMoney = 0;
+    private int currentMoney = 500;
     private bool canAttack = false;
 
     public Inventory Inventory { get => inventory; }
@@ -53,6 +54,9 @@ public class PlayerManager : MonoBehaviour
         playerAnimationsManager.Animator = animatorC;
         animatorA.enabled = false;
         animatorC.enabled = true;
+        playerAnimationsManager.Weapon = swordCVariant;
+       // swordAVariant.SetActive(false);
+        //swordCVariant.SetActive(true);
     }
 
     [ContextMenu("BackToOriginal")]
@@ -63,6 +67,9 @@ public class PlayerManager : MonoBehaviour
         playerAnimationsManager.Animator = animatorA;
         animatorA.enabled = true;
         animatorC.enabled = false;
+        playerAnimationsManager.Weapon = swordAVariant;
+        //swordAVariant.SetActive(true);
+        //swordCVariant.SetActive(false);
     }
 
     public void EquipRogueMask()

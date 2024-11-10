@@ -42,7 +42,7 @@ public class ShopItem : MonoBehaviour
 
     private void Awake()
     {
-        if(!isSelling) costText.SetText(item.itemPrice.ToString());
+        if(!isSelling) costText.SetText("$"+item.itemPrice.ToString());
         playerManager = FindObjectOfType<PlayerManager>();
     }
 

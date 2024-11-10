@@ -14,13 +14,13 @@ public class ShopSystem : MonoBehaviour
 
     public void ShowMoney()
     {
-        moneyBuyText.text = playerManager.CurrentMoney.ToString();
+        moneyBuyText.text = "$" + playerManager.CurrentMoney.ToString();
         playerManager.UpdateMoney();
     }
 
     public void ShowSellableMoney()
     {
-        moneySellText.text = playerManager.CurrentMoney.ToString();
+        moneySellText.text = "$" + playerManager.CurrentMoney.ToString();
         playerManager.UpdateMoney();
     }
 
@@ -54,7 +54,7 @@ public class ShopSystem : MonoBehaviour
             // Asigna las propiedades específicas para cada instancia
             shopItemInstance.ItemImage.sprite = item.GetSprite();
             shopItemInstance.ItemAmount.SetText(item.amount > 1 ? item.amount.ToString() : "");
-            shopItemInstance.ItemSellPrice.SetText(item.ItemSellPrice.ToString());
+            shopItemInstance.ItemSellPrice.SetText("$"+item.ItemSellPrice.ToString());
 
             // Asigna la función SellItem al botón del objeto instanciado
             shopItemInstance.SellButton.onClick.AddListener(() => SellItem(item));

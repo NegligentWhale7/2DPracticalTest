@@ -9,6 +9,7 @@ public class PlayerAnimationsManager : MonoBehaviour
     [SerializeField] private GameObject weapon;
 
     public Animator Animator { get => animator; set { animator = value; } }
+    public GameObject Weapon { get => weapon; set { weapon = value; } }
 
     private void Awake()
     {
