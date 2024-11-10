@@ -2,17 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShopItem : MonoBehaviour
 {
-    [SerializeField] PlayerManager playerManager;
+    PlayerManager playerManager;
     [SerializeField] PurchableItem item;
     [SerializeField] TextMeshProUGUI costText;
+    [SerializeField] bool isSelling = false;
+    [Header("Sell Settings")]
+    [SerializeField] Image itemImage;
+    [SerializeField] TextMeshProUGUI itemAmount;
 
     private Inventory inventory;
     private Item itemToAdd;
 
     public PurchableItem Item => item;
+    public Image ItemImage => itemImage;
+    public TextMeshProUGUI ItemAmount => itemAmount;
+    public TextMeshProUGUI ItemSellPrice => costText;
 
     public enum PurchableItemType
     {
@@ -23,13 +31,15 @@ public class ShopItem : MonoBehaviour
         Potatoes,
         Pumpkin,
         Aubergine,
+        RogueMask
     }
 
     [SerializeField] PurchableItemType itemType;
 
     private void Awake()
     {
-        costText.SetText(item.itemPrice.ToString());
+        if(!isSelling) costText.SetText(item.itemPrice.ToString());
+        playerManager = FindObjectOfType<PlayerManager>();
     }
 
     public void AddPurchasedItem()

@@ -13,10 +13,12 @@ public class Item
         Potatoes,
         Pumpkin,
         Aubergine,
+        RogueMask
     }
 
     public ItemType itemType;
     public int amount = 1;
+    public int itemSellPrice = 10;
 
     public Sprite GetSprite()
     {
@@ -28,6 +30,7 @@ public class Item
             ItemType.Potatoes => ItemAssets.Instance.PotatoesSprite,
             ItemType.Pumpkin => ItemAssets.Instance.PumpkinSprite,
             ItemType.Aubergine => ItemAssets.Instance.AubergineSprite,
+            ItemType.RogueMask => ItemAssets.Instance.RogueMaskSprite,
             _ => ItemAssets.Instance.HealthPotionSprite,
         };
     }
@@ -44,6 +47,7 @@ public class Item
                 return true;
             case ItemType.Weapon:
             case ItemType.Armature:
+            case ItemType.RogueMask:
                 return false;
             default:
                 return false;

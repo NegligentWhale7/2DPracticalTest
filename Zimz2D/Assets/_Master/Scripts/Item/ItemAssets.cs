@@ -29,5 +29,5 @@ public class ItemAssets : MonoBehaviour
     public Sprite PotatoesSprite;
     public Sprite PumpkinSprite;
     public Sprite AubergineSprite;
-
+    public Sprite RogueMaskSprite;
 }

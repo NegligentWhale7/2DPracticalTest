@@ -55,6 +55,29 @@ public class Inventory
 
     public void RemoveItem(Item item)
     {
-        items.Remove(item);
+        if(item.isStackable())
+        {
+            Item itemToRemove = null;
+            foreach (Item inventoryItem in items)
+            {
+                if (inventoryItem.itemType == item.itemType)
+                {
+                    inventoryItem.amount--;
+                    if (inventoryItem.amount == 0)
+                    {
+                        itemToRemove = inventoryItem;
+                    }
+                }
+            }
+            if (itemToRemove != null)
+            {
+                items.Remove(itemToRemove);
+            }
+        }
+        else
+        {
+            items.Remove(item);
+        }
+        OnItemListChanged?.Invoke();
     }
 }
