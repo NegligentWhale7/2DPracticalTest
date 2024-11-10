@@ -99,6 +99,7 @@ public class Inventory
             if(item.itemType == Item.ItemType.Weapon)
             {
                 playerManager.CanAttack = true;
+                playerManager.EquipSword();
             }
         }
         if(isAVariant)

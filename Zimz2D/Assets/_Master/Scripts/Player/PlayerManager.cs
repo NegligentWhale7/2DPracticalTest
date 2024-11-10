@@ -13,6 +13,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI moneyText;
     [Header("Skins")]
     [SerializeField] PlayerAnimationsManager playerAnimationsManager;
+    [SerializeField] private GameObject sword;
     [SerializeField] private GameObject rogueMask;
     [SerializeField] private GameObject rogueHair;
     [SerializeField] private SpriteRenderer skinA;
@@ -74,6 +75,11 @@ public class PlayerManager : MonoBehaviour
     {
         rogueMask.SetActive(false);
         rogueHair.SetActive(true);
+    }
+
+    public void EquipSword()
+    {
+        sword.SetActive(true);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
